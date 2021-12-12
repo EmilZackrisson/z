@@ -23,6 +23,15 @@
                 document.getElementById("ping-btn").innerHTML = "Går inte att nå servern";
             });
         };
+        var heimdall_ping = function () {
+            ping('http://192.168.0.20').then(function (delta) {
+                // alert(delta);
+                window.open("http://heimdall.emilzackrisson.tk","_self")
+            }).catch(function (error) {
+                document.getElementById("heimdall-btn").className = "btn btn btn-danger btn-lg"
+                document.getElementById("heimdall-btn").innerHTML = "Går inte att nå servern";
+            });
+        };
     </script>
 
     <title>z</title>
@@ -61,8 +70,11 @@
                         zServer är hjärtat i Emils Rum. Den tar han om precis allt. Home
                         Assistant är den viktigaste delen och allt körs via Unraid.
                     </p>
-                    <a href="http://192.168.0.200" class="btn btn-primary btn-lg">Heimdall</a>
-                    <button onclick='do_ping()' type="button" id="ping-btn" class="btn btn-warning btn-lg">Kontrollera Nätverk</button>
+                    <!-- Open Heimdall if on same network -->
+                    <button onclick='heimdall_ping()' type="button" id="ping-btn" class="btn btn-primary btn-lg">Heimdall</button>
+                    <!-- Ping button -->
+                    <button onclick='do_ping()' type="button" id="heimdall-btn" class="btn btn-warning btn-lg">Kontrollera Nätverk</button>
+
                 </div>
                 <img class="img-fluid w-25 d-none d-sm-block px-5" src="svg/server.svg" alt="" />
             </div>
